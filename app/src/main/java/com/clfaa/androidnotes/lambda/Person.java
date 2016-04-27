@@ -13,10 +13,7 @@ public class Person {
 
     String name;
     Sex gender;
-    String emailAddress;
     int age;
-
-
 
     public void printPerson() {
         System.out.println("name: " + name +" gender: " + gender.name() + " age: " + age);

@@ -34,6 +34,7 @@ public class PersonTest {
                 person.gender = Person.Sex.MALE;
             }
             person.name = "LambdaName_"+ i;
+
             list.add(person);
         }
         Person.printPersons(list,p -> p.age > 18 && p.age < 25);
