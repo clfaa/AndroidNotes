@@ -37,6 +37,7 @@ public class PersonTest {
 
             list.add(person);
         }
+        //不知为何，在这儿使用lambda，编译错误，但testTest()方法则没有问题
         Person.printPersons(list,p -> p.age > 18 && p.age < 25);
     }
 
