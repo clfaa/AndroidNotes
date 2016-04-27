@@ -39,4 +39,9 @@ public class PersonTest {
         }
         Person.printPersons(list,p -> p.age > 18 && p.age < 25);
     }
+
+    @Test
+    public void testTest(){
+        Person.test();
+    }
 }
