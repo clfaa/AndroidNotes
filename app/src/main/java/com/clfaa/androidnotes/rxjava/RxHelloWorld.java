@@ -1,7 +1,12 @@
 package com.clfaa.androidnotes.rxjava;
 
+import java.util.List;
+import java.util.StringTokenizer;
+
 import rx.Observable;
+import rx.Observer;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
 /**
@@ -50,5 +55,48 @@ public class RxHelloWorld {
     public void four(){
         Observable.just("hello world").subscribe(System.out::println);
     }
+
+
+    public void helloMap(){
+        Observable.just("hello, rx!").map(s -> s + ": map").subscribe(System.out::println);
+    }
+
+    /**
+     * Observable.from 将一组信息逐一发送
+     */
+    public void helloForm(){
+        Observable.from(new String[]{"from1","from2","from3"}).subscribe(System.out::println);
+    }
+
+    public void helloFlatMap(){
+        Observable.just(new String[]{"hello", "hello1","hello2","hello3","hello88","hello5","hello10","hello333","hello100","hello1000"})
+                .flatMap(strings -> Observable.from(strings))
+                .flatMap(s -> Observable.just(s + "-FlatMap"))
+                .subscribe(System.out::println);
+    }
+
+    /**
+     * filter 过滤
+     */
+    public void helloFilter(){
+        Observable.just(new String[]{"hello", "hello1","hello2","hello3","hello88","hello5","hello10","hello333","hello100","hello1000"})
+                .flatMap(strings -> Observable.from(strings))
+                .filter(s1 -> s1.length() > 6)
+                .flatMap(s -> Observable.just(s + "-FlatMap"))
+                .subscribe(System.out::println);
+    }
+
+    /**
+     * take 个数限制
+     */
+    public void helloTake(){
+        Observable.just(new String[]{"hello", "hello1","hello2","hello3","hello88","hello5","hello10","hello333","hello100","hello1000"})
+                .flatMap(strings -> Observable.from(strings))
+                .filter(s1 -> s1.length() > 6)
+                .flatMap(s -> Observable.just(s + "-FlatMap"))
+                .take(3)
+                .subscribe(System.out::println);
+    }
+
 
 }

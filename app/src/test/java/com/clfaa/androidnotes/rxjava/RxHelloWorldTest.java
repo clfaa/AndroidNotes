@@ -28,4 +28,19 @@ public class RxHelloWorldTest {
     public void testFour() throws Exception {
         new RxHelloWorld().four();
     }
+
+    @Test
+    public void testHelloMap() throws Exception {
+        new RxHelloWorld().helloMap();
+    }
+
+    @Test
+    public void testHelloForm() throws Exception {
+        new RxHelloWorld().helloForm();
+    }
+
+    @Test
+    public void testHelloFlatMap() throws Exception {
+        new RxHelloWorld().helloFlatMap();
+    }
 }
