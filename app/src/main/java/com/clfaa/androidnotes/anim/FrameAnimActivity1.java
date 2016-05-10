@@ -1,5 +1,7 @@
 package com.clfaa.androidnotes.anim;
 
+import android.animation.TypeEvaluator;
+import android.animation.ValueAnimator;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
@@ -57,7 +59,6 @@ public class FrameAnimActivity1 extends AppCompatActivity {
 
         isAnimStop = animationDrawable.isRunning();
         setViews();
-
 
         //解决方案
         img1.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
