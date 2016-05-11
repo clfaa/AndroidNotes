@@ -1,7 +1,5 @@
 package com.clfaa.androidnotes.anim;
 
-import android.animation.TypeEvaluator;
-import android.animation.ValueAnimator;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
@@ -43,7 +41,7 @@ public class FrameAnimActivity1 extends AppCompatActivity {
     /**
      * 动画状态：true:播放状态，false:停止状态
      */
-    private boolean isAnimStop = false;
+    private boolean isAnimRunning = false;
 
     private AnimationDrawable animationDrawable;
 
@@ -57,14 +55,14 @@ public class FrameAnimActivity1 extends AppCompatActivity {
 
         animationDrawable = (AnimationDrawable) stateListDrawable.getCurrent();
 
-        isAnimStop = animationDrawable.isRunning();
+        isAnimRunning = animationDrawable.isRunning();
         setViews();
 
         //解决方案
         img1.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
-                if (isAnimStop){
+                if (!isAnimRunning){
                     animationDrawable.stop();
                 }
                 return true;
@@ -80,26 +78,26 @@ public class FrameAnimActivity1 extends AppCompatActivity {
     }
     @OnClick(android.R.id.button1)
     public void stopOrRunAnim(){
-        if (isAnimStop) {
-            isAnimStop = false;
+        isAnimRunning = !isAnimRunning;
+        if (isAnimRunning) {
+            isAnimRunning = false;
             animationDrawable.stop();
         }else {
-            isAnimStop = true;
-            animationDrawable.start();
+            isAnimRunning = true;
+
         }
         setViews();
     }
 
     public void setViews(){
-        if (!isAnimStop) {
+        if (!isAnimRunning) {
+            animationDrawable.stop();
             button1.setText("start");
             text1.setText("Not Running");
-            animationDrawable.stop();
         } else {
-            isAnimStop = true;
+            animationDrawable.start();
             button1.setText("stop");
             text1.setText("Running");
-            animationDrawable.start();
         }
     }
 }
