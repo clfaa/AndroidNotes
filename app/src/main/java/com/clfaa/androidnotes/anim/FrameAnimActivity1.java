@@ -79,13 +79,6 @@ public class FrameAnimActivity1 extends AppCompatActivity {
     @OnClick(android.R.id.button1)
     public void stopOrRunAnim(){
         isAnimRunning = !isAnimRunning;
-        if (isAnimRunning) {
-            isAnimRunning = false;
-            animationDrawable.stop();
-        }else {
-            isAnimRunning = true;
-
-        }
         setViews();
     }
 
